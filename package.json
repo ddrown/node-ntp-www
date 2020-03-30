@@ -1,0 +1,10 @@
+{
+  "author": "",
+  "name": "node-ntp-www",
+  "version": "0.0.0",
+  "repository": "ddrown/node-ntp-www",
+  "dependencies": {
+    "express": "^4.16.4",
+    "ws": "^7.2.3"
+  }
+}
