@@ -4,6 +4,7 @@ const express = require('express');
 const { createServer } = require('http');
 const WebSocket = require('ws');
 const watchChrony = require('./watchChrony');
+const gpspipe = require('./gpspipe');
 
 const app = express();
 app.use(express.static('public'));
@@ -26,6 +27,11 @@ watchChrony.onData((data) => {
   const msg = {type: "chrony", text: data};
   sendAllClients(msg);
   lastState.chrony = msg;
+});
+
+gpspipe.onData((data) => {
+  sendAllClients(data);
+  lastState.gps = data;
 });
 
 wss.on('connection', (ws) => {

@@ -43,9 +43,7 @@ function show_radar(element) {
   const width = 355;
   const height = 315;
   if (gps_hidden) {
-    element.width(width);
-    element.height(height);
-    $("#gps").toggle();
+    $("#gps").show();
     gps_hidden = false;
   }
   const ctx = element.getContext("2d");
@@ -149,7 +147,7 @@ function gps_msg(d, ts) {
   $(`#messages_${d.type}`).text(d.text);
   set_date_element(`#messages_time_${d.type}`, ts);
   if(d.type === "gps") {
-    set_date_element("#messages_time_gps_lock", d.lastlock * 1000);
+    set_date_element("#messages_time_gps_lock", d.lastlock);
     $("#GPGSA").html(d.parsed.GPGSA);
     let sats = "";
     for(let i = 0; i < d.parsed.GPGSV.length; i++) {
