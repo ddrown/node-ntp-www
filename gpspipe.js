@@ -3,6 +3,10 @@ const { spawn } = require('child_process');
 
 const gpspipe = spawn('gpspipe', ["-r"]);
 
+gpspipe.on('error', (err) => {
+  console.log(`error starting gpspipe: ${err}`);
+});
+
 let callBack;
 function onData(newCallback) {
   callBack = newCallback;
